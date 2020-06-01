@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BigListComponent } from './big-list.component';
+import { CivListComponent } from './civ-list.component';
 
-describe('BigListComponent', () => {
-  let component: BigListComponent;
-  let fixture: ComponentFixture<BigListComponent>;
+describe('CivListComponent', () => {
+  let component: CivListComponent;
+  let fixture: ComponentFixture<CivListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BigListComponent ]
+      declarations: [ CivListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BigListComponent);
+    fixture = TestBed.createComponent(CivListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
