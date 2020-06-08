@@ -1,26 +1,45 @@
-<table class="table table-hover table-bordered table">
-  <thead class="thead-dark">
-  <tr class="text-capitalize">
-    <th scope="col">id</th>
-    <th scope="col">name</th>
-    <th scope="col">expansion</th>
-    <th scope="col">armyType</th>
-    <th scope="col">uniqueUnit</th>
-    <th scope="col">uniqueTech</th>
-    <th scope="col">teamBonus</th>
-    <th scope="col">civilizationBonus</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let civ of civs">
-    <th scope="row">{{civ.id}}</th>
-    <td>{{civ.name}}</td>
-    <td>{{civ.expansion}}</td>
-    <td>{{civ.armyType}}</td>
-    <td><a href="{{civ.uniqueUnit}}">uniqueUnit</a></td>
-    <td><a href="{{civ.uniqueTech}}">uniqueTech</a></td>
-    <td>{{civ.teamBonus}}</td>
-    <td>{{civ.civilizationBonus}}</td>
-  </tr>
-  </tbody>
-</table>
+<div class='card-body'>
+  <div class='row m-0'>
+    <div class='col-md-1'>Search:</div>
+    <div class='col-md-2'>
+      <label>
+        <input type='text' [(ngModel)]="listFilter"/>
+      </label>
+    </div>
+    <div class='col-md-1 text-nowrap' *ngIf="listFilter">
+      <h3 class="m-0">Filtered by: {{listFilter}}</h3>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered table">
+      <thead class="thead-dark">
+      <tr class="text-capitalize">
+        <th scope="col">id</th>
+        <th scope="col">name</th>
+        <th scope="col">expansion</th>
+        <th scope="col">armyType</th>
+        <th scope="col">uniqueUnit</th>
+        <th scope="col">uniqueTech</th>
+        <th scope="col">teamBonus</th>
+        <th scope="col">civilizationBonus</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let civ of civs">
+        <th scope="row">{{civ.id}}</th>
+        <td>{{civ.name}}</td>
+        <td>{{civ.expansion}}</td>
+        <td>{{civ.army_type}}</td>
+        <td><a [href]="civ.unique_unit[0]">uniqueUnit</a></td>
+        <td><a [href]="civ.unique_tech[0]">uniqueTech</a></td>
+        <td>{{civ.team_bonus}}</td>
+        <td>
+          <div *ngFor="let civBonus of civ.civilization_bonus">
+            {{civBonus}}
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,10 +1,10 @@
-export interface Civilizations {
+export interface ICivilizations {
   id: number;
   name: string;
   expansion: string;
-  armyType: string;
-  uniqueUnit: string;
-  uniqueTech: string;
-  teamBonus: string;
-  civilizationBonus: string;
+  army_type: string;
+  unique_unit: string[];
+  unique_tech: string[];
+  team_bonus: string;
+  civilization_bonus: string[];
 }

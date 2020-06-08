@@ -1,41 +1,50 @@
-import { Component, OnInit } from '@angular/core';
-import {Civilizations} from './civilizations';
-import {ajaxGetJSON} from 'rxjs/internal-compatibility';
+import {Component, OnInit, OnChanges, SimpleChanges} from '@angular/core';
+import {ICivilizations} from './civilizations';
+import {CivsService} from './civs.service';
 
 @Component({
   selector: 'app-civ-list',
   templateUrl: './civ-list.component.html',
   styleUrls: ['./civ-list.component.css']
 })
-export class CivListComponent implements OnInit {
+export class CivListComponent implements OnInit, OnChanges {
+  // tslint:disable-next-line:variable-name
+  private _listFilter: string;
+  private errorMessage: string;
+  civs: ICivilizations[] = [];
+  filteredCivs: ICivilizations[] = [];
 
-  civs: Civilizations[] = [
-  {
-    id: 1,
-    name: 'Aztecs',
-    expansion: 'The Conquerors',
-    armyType: 'Infantry and Monk',
-    uniqueUnit: 'https://age-of-empires-2-api.herokuapp.com/api/v1/unit/jaguar_warrior',
-    uniqueTech: 'https://age-of-empires-2-api.herokuapp.com/api/v1/technology/garland_wars',
-    teamBonus: 'Relics generate +33% gold',
-    civilizationBonus: 'Villagers carry +5, Military units created 15% faster, +5 Monk hit points for each Monastery technology Loom free'
-  },
-  {
-      id: 2,
-      name: 'Aztecs',
-      expansion: 'The Conquerors',
-      armyType: 'Infantry and Monk',
-      uniqueUnit: 'https://age-of-empires-2-api.herokuapp.com/api/v1/unit/jaguar_warrior',
-      uniqueTech: 'https://age-of-empires-2-api.herokuapp.com/api/v1/technology/garland_wars',
-      teamBonus: 'Relics generate +33% gold',
-      civilizationBonus: 'Villagers carry +5, Military units created 15% faster, +5 Monk hit points for each Monastery technology Loom free'
-    }
-  ];
+  get listFilter(): string {
+    return this._listFilter;
+  }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.filteredCivs = this.listFilter ? this.performFilter(this.listFilter) : this.civs;
   }
 
 
+  constructor(private civService: CivsService) {
+  }
+
+  performFilter(filterBy: string): ICivilizations[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.civs.filter((civ: ICivilizations) =>
+      civ.name.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
+
+  ngOnInit(): void {
+    this.civService.getCivs().subscribe({
+        next: value => {
+          console.table(value);
+          this.civs = value;
+          this.filteredCivs = this.civs;
+        },
+        error: err => this.errorMessage = err
+      });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('Changes happened');
+  }
 }
