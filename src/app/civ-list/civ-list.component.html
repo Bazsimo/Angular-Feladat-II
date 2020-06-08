@@ -25,36 +25,43 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let civ of filteredCivs">
-        <th scope="row">{{civ.id}}</th>
-        <td>{{civ.name}}</td>
-        <td>{{civ.expansion}}</td>
-        <td>{{civ.army_type}}</td>
-        <td>
-          <div *ngFor="let civParam of civ.unique_unit">
-            <a [href]="civParam">
-              {{civParam | convertCivUniqueProp | convertToSpaces: '_' | titlecase}}
-            </a>
-          </div>
-        </td>
-        <td>
-          <div *ngFor="let civParam of civ.unique_tech">
-            <a [href]="civParam">
-              {{civParam | convertCivUniqueProp | convertToSpaces: '_' | titlecase}}
-            </a>
-          </div>
-        </td>
-        <td>{{civ.team_bonus}}</td>
-        <td>
-          <table class="table-striped">
-            <tbody>
-              <tr *ngFor="let civParam of civ.civilization_bonus">
-                {{civParam}}
-              </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+        <ng-container *ngFor="let civ of filteredCivs">
+          <tr [id]="'civ-item-'+civ.id" >
+            <th scope="row">{{civ.id}}</th>
+            <td>{{civ.name}}</td>
+            <td>{{civ.expansion}}</td>
+            <td>{{civ.army_type}}</td>
+            <td>
+              <div *ngFor="let civParam of civ.unique_unit">
+                <a (click)="clickOnUnique(civ.id)" [href]="'#civ-item-'+civ.id">
+                  {{civParam | convertCivUniqueProp | convertToSpaces: '_' | titlecase}}
+                </a>
+              </div>
+            </td>
+            <td>
+              <div *ngFor="let civParam of civ.unique_tech">
+                <a (click)="clickOnUnique(civ.id)" [href]="'#civ-item-'+civ.id">
+                  {{civParam | convertCivUniqueProp | convertToSpaces: '_' | titlecase}}
+                </a>
+              </div>
+            </td>
+            <td>{{civ.team_bonus}}</td>
+            <td>
+              <table class="table-striped">
+                <tbody>
+                  <tr *ngFor="let civParam of civ.civilization_bonus">
+                    {{civParam}}
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr *ngIf="details[civ.id]" [id]="'details-'+civ.id">
+            <td colspan="8">
+              <app-civ-list-details></app-civ-list-details>
+            </td>
+          </tr>
+        </ng-container>
       </tbody>
     </table>
   </div>

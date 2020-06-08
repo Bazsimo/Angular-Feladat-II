@@ -8,6 +8,7 @@ import { CivListComponent } from './civ-list/civ-list.component';
 import {FormsModule} from '@angular/forms';
 import { ConvertCivUniquePropPipe } from './shared/convert-civ-unique-prop.pipe';
 import { ConvertToSpacesPipe } from './shared/convert-to-spaces.pipe';
+import { CivListDetailsComponent } from './civ-list/civ-list-details/civ-list-details.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ConvertToSpacesPipe } from './shared/convert-to-spaces.pipe';
     NavBarComponent,
     CivListComponent,
     ConvertCivUniquePropPipe,
-    ConvertToSpacesPipe
+    ConvertToSpacesPipe,
+    CivListDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,7 @@ export class CivListComponent implements OnInit, OnChanges {
   private errorMessage: string;
   civs: ICivilizations[] = [];
   filteredCivs: ICivilizations[] = [];
+  details: boolean[] = [];
 
   get listFilter(): string {
     return this._listFilter;
@@ -30,6 +31,10 @@ export class CivListComponent implements OnInit, OnChanges {
     filterBy = filterBy.toLocaleLowerCase();
     return this.civs.filter((civ: ICivilizations) =>
       civ.name.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
+
+  clickOnUnique(id: number): void {
+    this.details[id] = !this.details[id];
   }
 
   ngOnInit(): void {
