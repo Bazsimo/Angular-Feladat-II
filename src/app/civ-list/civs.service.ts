@@ -38,8 +38,9 @@ export class CivsService {
     return this.http
       .get<ServerData>(this.civsUrl)
       .pipe(
-        tap(data => console.log(data)),
-        map(data => data.civilizations as ICivilizations[])
+        // tap(data => console.log(data)),
+        map(data => data.civilizations as ICivilizations[],
+        catchError(CivsService.handleError))
       );
   }
 }

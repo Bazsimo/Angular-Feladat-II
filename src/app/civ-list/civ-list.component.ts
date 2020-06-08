@@ -23,7 +23,6 @@ export class CivListComponent implements OnInit, OnChanges {
     this.filteredCivs = this.listFilter ? this.performFilter(this.listFilter) : this.civs;
   }
 
-
   constructor(private civService: CivsService) {
   }
 
@@ -36,7 +35,7 @@ export class CivListComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.civService.getCivs().subscribe({
         next: value => {
-          console.table(value);
+          // console.table(value);
           this.civs = value;
           this.filteredCivs = this.civs;
         },

@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="table-responsive">
-    <table class="table table-hover table-bordered table">
+    <table class="table table-hover table-bordered">
       <thead class="thead-dark">
       <tr class="text-capitalize">
         <th scope="col">id</th>
@@ -25,18 +25,34 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let civ of civs">
+      <tr *ngFor="let civ of filteredCivs">
         <th scope="row">{{civ.id}}</th>
         <td>{{civ.name}}</td>
         <td>{{civ.expansion}}</td>
         <td>{{civ.army_type}}</td>
-        <td><a [href]="civ.unique_unit[0]">uniqueUnit</a></td>
-        <td><a [href]="civ.unique_tech[0]">uniqueTech</a></td>
+        <td>
+          <div *ngFor="let civParam of civ.unique_unit">
+            <a [href]="civParam">
+              {{civParam | convertCivUniqueProp | convertToSpaces: '_' | titlecase}}
+            </a>
+          </div>
+        </td>
+        <td>
+          <div *ngFor="let civParam of civ.unique_tech">
+            <a [href]="civParam">
+              {{civParam | convertCivUniqueProp | convertToSpaces: '_' | titlecase}}
+            </a>
+          </div>
+        </td>
         <td>{{civ.team_bonus}}</td>
         <td>
-          <div *ngFor="let civBonus of civ.civilization_bonus">
-            {{civBonus}}
-          </div>
+          <table class="table-striped">
+            <tbody>
+              <tr *ngFor="let civParam of civ.civilization_bonus">
+                {{civParam}}
+              </tr>
+            </tbody>
+          </table>
         </td>
       </tr>
       </tbody>
