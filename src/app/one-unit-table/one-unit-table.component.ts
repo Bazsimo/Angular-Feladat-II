@@ -1,7 +1,7 @@
 import {Component, OnInit, OnChanges, SimpleChanges, Input} from '@angular/core';
-import {IUnit} from '../../interfaces/unit-interface';
-import {UnitService} from '../unit.service';
-import {ConvertCivUniquePropPipe} from '../../shared/convert-civ-unique-prop.pipe';
+import {IUnit} from '../interfaces/unit-interface';
+import {UnitService} from '../units/unit.service';
+import {ConvertCivUniquePropPipe} from '../shared/convert-civ-unique-prop.pipe';
 
 @Component({
   selector: 'app-one-unit-table',

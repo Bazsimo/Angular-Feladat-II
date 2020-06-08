@@ -1,15 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
+import { RouterModule} from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CivListComponent } from './civ-list/civ-list.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ConvertCivUniquePropPipe } from './shared/convert-civ-unique-prop.pipe';
 import { ConvertToSpacesPipe } from './shared/convert-to-spaces.pipe';
 import { CivListDetailsComponent } from './civ-list/civ-list-details/civ-list-details.component';
-import { OneUnitTableComponent } from './units/one-unit-table/one-unit-table.component';
+import { OneUnitTableComponent } from './one-unit-table/one-unit-table.component';
+import { UnitListComponent } from './unit-list/unit-list.component';
+import { WelcomeViewComponent } from './welcome-view/welcome-view.component';
 
 
 @NgModule({
@@ -20,12 +22,19 @@ import { OneUnitTableComponent } from './units/one-unit-table/one-unit-table.com
     ConvertCivUniquePropPipe,
     ConvertToSpacesPipe,
     CivListDetailsComponent,
-    OneUnitTableComponent
+    OneUnitTableComponent,
+    UnitListComponent,
+    WelcomeViewComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot([
+      { path: 'units', component: UnitListComponent},
+      { path: 'civilizations', component: CivListComponent},
+      { path: '', component: WelcomeViewComponent, pathMatch: 'full'}
+    ])
   ],
   providers: [
     ConvertCivUniquePropPipe
