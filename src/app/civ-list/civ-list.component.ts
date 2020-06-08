@@ -1,5 +1,5 @@
-import {Component, OnInit, OnChanges, SimpleChanges} from '@angular/core';
-import {ICivilizations} from './civilizations';
+import {Component, OnInit} from '@angular/core';
+import {ICivilizations} from '../interfaces/civilizations';
 import {CivsService} from './civs.service';
 
 @Component({
@@ -7,10 +7,11 @@ import {CivsService} from './civs.service';
   templateUrl: './civ-list.component.html',
   styleUrls: ['./civ-list.component.css']
 })
-export class CivListComponent implements OnInit, OnChanges {
+export class CivListComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   private _listFilter: string;
-  private errorMessage: string;
+  // tslint:disable-next-line:variable-name
+  private _errorMessage: string;
   civs: ICivilizations[] = [];
   filteredCivs: ICivilizations[] = [];
   details: boolean[] = [];
@@ -44,11 +45,7 @@ export class CivListComponent implements OnInit, OnChanges {
           this.civs = value;
           this.filteredCivs = this.civs;
         },
-        error: err => this.errorMessage = err
+        error: err => this._errorMessage = err
       });
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('Changes happened');
   }
 }

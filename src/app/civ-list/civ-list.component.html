@@ -1,6 +1,6 @@
 <div class='card-body'>
   <div class='row m-0'>
-    <div class='col-md-1'>Search:</div>
+    <h3 class='col-md-1'>Search:</h3>
     <div class='col-md-2'>
       <label>
         <input type='text' [(ngModel)]="listFilter"/>
@@ -15,13 +15,13 @@
       <thead class="thead-dark">
       <tr class="text-capitalize">
         <th scope="col">id</th>
-        <th scope="col">name</th>
-        <th scope="col">expansion</th>
-        <th scope="col">armyType</th>
-        <th scope="col">uniqueUnit</th>
-        <th scope="col">uniqueTech</th>
-        <th scope="col">teamBonus</th>
-        <th scope="col">civilizationBonus</th>
+        <th>name</th>
+        <th>expansion</th>
+        <th>armyType</th>
+        <th>uniqueUnit</th>
+        <th>uniqueTech</th>
+        <th>teamBonus</th>
+        <th>civilizationBonus</th>
       </tr>
       </thead>
       <tbody>
@@ -33,16 +33,16 @@
             <td>{{civ.army_type}}</td>
             <td>
               <div *ngFor="let civParam of civ.unique_unit">
-                <a (click)="clickOnUnique(civ.id)" [href]="'#civ-item-'+civ.id">
+                <a class="text-info pointer" (click)="clickOnUnique(civ.id)"><u>
                   {{civParam | convertCivUniqueProp | convertToSpaces: '_' | titlecase}}
-                </a>
+                </u></a>
               </div>
             </td>
             <td>
               <div *ngFor="let civParam of civ.unique_tech">
-                <a (click)="clickOnUnique(civ.id)" [href]="'#civ-item-'+civ.id">
+                <a class="text-info pointer" (click)="clickOnUnique(civ.id)"><u>
                   {{civParam | convertCivUniqueProp | convertToSpaces: '_' | titlecase}}
-                </a>
+                </u></a>
               </div>
             </td>
             <td>{{civ.team_bonus}}</td>
@@ -57,8 +57,8 @@
             </td>
           </tr>
           <tr *ngIf="details[civ.id]" [id]="'details-'+civ.id">
-            <td colspan="8">
-              <app-civ-list-details></app-civ-list-details>
+            <td colspan="8" class="m-0 p-1">
+              <app-one-unit-table [inputUrl]="civ.unique_unit"></app-one-unit-table>
             </td>
           </tr>
         </ng-container>
