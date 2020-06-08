@@ -16,7 +16,8 @@ export class CivsService {
   constructor(private http: HttpClient) {
   }
   // private civsUrl = 'https://age-of-empires-2-api.herokuapp.com/api/v1/civilizations';
-  private civsUrl = 'assets/civs.json';
+  // private civsUrl = 'assets/civs.json';
+  private civsUrl = 'api/civilizations';
 
   private static handleError(err: HttpErrorResponse) {
     // in a real world app, we may send the server to some remote logging infrastructure
