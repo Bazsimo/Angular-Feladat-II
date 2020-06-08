@@ -1,0 +1,39 @@
+<table>
+  <thead class="thead-dark text-capitalize">
+    <tr>
+      <th scope="col">id</th>
+      <th>name</th>
+      <th>description</th>
+      <th>age</th>
+      <th>cost</th>
+      <th>hit_points</th>
+      <th>attack</th>
+      <th>range</th>
+      <th>armor</th>
+      <th>movement_rate</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let oneUnit of units">
+    <tr>
+      <th>{{oneUnit.id}}</th>
+      <td>{{oneUnit.name}}</td>
+      <td>{{oneUnit.description}}</td>
+      <td>{{oneUnit.age}}</td>
+      <td class="m-0 p-0">
+        <table>
+          <tr>
+            <td>wood: {{oneUnit.cost.Wood}}</td>
+            <td>food: {{oneUnit.cost.Food}}</td>
+            <td>gold: {{oneUnit.cost.Gold}}</td>
+          </tr>
+        </table>
+      </td>
+      <td>{{oneUnit.hit_points}}</td>
+      <td>{{oneUnit.attack}}</td>
+      <td>{{oneUnit.range}}</td>
+      <td>{{oneUnit.armor}}</td>
+      <td>{{oneUnit.movement_rate}}</td>
+    </tr>
+  </tbody>
+</table>
+
