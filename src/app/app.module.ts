@@ -12,6 +12,7 @@ import { CivListDetailsComponent } from './civ-list/civ-list-details/civ-list-de
 import { OneUnitTableComponent } from './one-unit-table/one-unit-table.component';
 import { UnitListComponent } from './unit-list/unit-list.component';
 import { WelcomeViewComponent } from './welcome-view/welcome-view.component';
+import { NotFound404Component } from './http-status/not-found404/not-found404.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { WelcomeViewComponent } from './welcome-view/welcome-view.component';
     CivListDetailsComponent,
     OneUnitTableComponent,
     UnitListComponent,
-    WelcomeViewComponent
+    WelcomeViewComponent,
+    NotFound404Component
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ import { WelcomeViewComponent } from './welcome-view/welcome-view.component';
     RouterModule.forRoot([
       { path: 'units', component: UnitListComponent},
       { path: 'civilizations', component: CivListComponent},
-      { path: '', component: WelcomeViewComponent, pathMatch: 'full'}
+      { path: '', component: WelcomeViewComponent, pathMatch: 'full'},
+      { path: '**', component: NotFound404Component}
     ])
   ],
   providers: [
